@@ -61,7 +61,7 @@
             $(".details").click(function () {
                 var id = $(this).attr("data-id");
                 $('.loading').addClass('visible');
-                $("#modal").load("Livros/Details?id=" + id, function () {
+                $("#modal").load("Livraria/Livros/Details?id=" + id, function () {
                     $("#modal").modal();
                     $('.loading').removeClass('visible');
                 })
@@ -72,7 +72,7 @@
             $(".edit").click(function () {
                 var id = $(this).attr("data-id");
                 $('.loading').addClass('visible');
-                $("#modal").load("Livros/Edit?id=" + id, function () {
+                $("#modal").load("Livraria/Livros/Edit?id=" + id, function () {
                     $("#modal").modal();
                     $('.loading').removeClass('visible');
                 })
@@ -83,7 +83,7 @@
             $(".delete").click(function () {
                 var id = $(this).attr("data-id");
                 $('.loading').addClass('visible');
-                $("#modal").load("Livros/Delete?id=" + id, function () {
+                $("#modal").load("Livraria/Livros/Delete?id=" + id, function () {
                     $("#modal").modal();
                     $('.loading').removeClass('visible');
                 })
@@ -94,7 +94,7 @@
             $(".create").click(function () {
                 var id = $(this).attr("data-id");
                 $('.loading').addClass('visible');
-                $("#modal").load("Livros/Create", function () {
+                $("#modal").load("Livraria/Livros/Create", function () {
                     $("#modal").modal();
                     $('.loading').removeClass('visible');
                 })

@@ -14,7 +14,7 @@
                 $(".editora").click(function () {
                     var id = $(this).attr("data-id");
                     $('.loading').addClass('visible');
-                    $("#modal").load("Editoras/Create", function () {
+                    $("#modal").load("Livraria/Editoras/Create", function () {
                         $("#modal").modal();
                         $('.loading').removeClass('visible');
                     })
@@ -24,7 +24,7 @@
                 $(".genero").click(function () {
                     var id = $(this).attr("data-id");
                     $('.loading').addClass('visible');
-                    $("#modal").load("Generos/Create", function () {
+                    $("#modal").load("Livraria/Generos/Create", function () {
                         $("#modal").modal();
                         $('.loading').removeClass('visible');
                     })
@@ -34,7 +34,7 @@
                 $(".idioma").click(function () {
                     var id = $(this).attr("data-id");
                     $('.loading').addClass('visible');
-                    $("#modal").load("Idiomas/Create", function () {
+                    $("#modal").load("Livraria/Idiomas/Create", function () {
                         $("#modal").modal();
                         $('.loading').removeClass('visible');
                     })
