@@ -1,0 +1,132 @@
+﻿@model Livraria.Livro
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Detalhes do Livro</h4>
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                TÍTULO
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.NOME)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.AUTOR)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.AUTOR)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                GÊNERO
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Genero.NOME)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                IDIOMA
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Idioma.NOME)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.EDICAO)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.EDICAO)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                EDITORA
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Editora.NOME)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                DATA DE CADASTRO
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.DATA_CADASTRO)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                DATA DE ALTERAÇÃO
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.DATA_ALTERACAO)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                DATA DE PUBLICAÇÃO
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.DATA_PUBLICACAO)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.QUANTIDADE)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.QUANTIDADE)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary dismiss" data-dismiss="modal">Fechar</button>
+        </div>
+    </div>
+</div>

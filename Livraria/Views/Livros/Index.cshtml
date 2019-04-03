@@ -1,0 +1,200 @@
+﻿@model IEnumerable<Livraria.Livro>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    caption{
+        visibility: hidden;
+    }
+    th{
+        text-align:center !important;
+        vertical-align:middle;
+    }
+    .btn-hiden {
+        visibility: hidden;
+        padding: 3px;
+    }
+    tr:hover .btn-hiden {
+        visibility: visible;
+    }
+    tr:hover .button-container {
+        position:unset;
+    }
+    td {
+        position:relative;
+        text-align:center;
+    }
+    .button-container {
+        position: absolute;
+        left: 0;
+        margin-left:5px;
+        top: 5px;
+    }
+    .with-buttons {
+        width: 122px;
+    }
+    .btn-outline-secondary{
+        text-decoration:none;
+        color:black;
+    }
+    button{
+        background-color:transparent;
+        border:none;
+    }
+    .loading{
+        visibility:hidden;
+        position:absolute;
+        top:50%;
+        left:50%;
+    }
+    .visible{
+        visibility:visible !important;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $(".details").click(function () {
+                var id = $(this).attr("data-id");
+                $('.loading').addClass('visible');
+                $("#modal").load("Livros/Details?id=" + id, function () {
+                    $("#modal").modal();
+                    $('.loading').removeClass('visible');
+                })
+            });
+        }); 
+
+        $(function () {
+            $(".edit").click(function () {
+                var id = $(this).attr("data-id");
+                $('.loading').addClass('visible');
+                $("#modal").load("Livros/Edit?id=" + id, function () {
+                    $("#modal").modal();
+                    $('.loading').removeClass('visible');
+                })
+            });
+        }); 
+
+        $(function () {
+            $(".delete").click(function () {
+                var id = $(this).attr("data-id");
+                $('.loading').addClass('visible');
+                $("#modal").load("Livros/Delete?id=" + id, function () {
+                    $("#modal").modal();
+                    $('.loading').removeClass('visible');
+                })
+            });
+        });
+
+        $(function () {
+            $(".create").click(function () {
+                var id = $(this).attr("data-id");
+                $('.loading').addClass('visible');
+                $("#modal").load("Livros/Create", function () {
+                    $("#modal").modal();
+                    $('.loading').removeClass('visible');
+                })
+            });
+        });
+
+        $('.div1').width($('.table').width());
+        $('.wrapper1').width($('.wrapper2').width());
+
+        $(function () {
+            $(".wrapper1").scroll(function () {
+                $(".wrapper2")
+                    .scrollLeft($(".wrapper1").scrollLeft());
+            });
+            $(".wrapper2").scroll(function () {
+                $(".wrapper1")
+                    .scrollLeft($(".wrapper2").scrollLeft());
+            });
+        });
+    });
+    
+</script>
+
+<h2 class="text-center">Livraria</h2>
+
+<div class="d-flex justify-content-center loading">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<p>
+    <button type="button" class="btn btn-outline-secondary create">Novo Livro</button>
+</p>
+    <div class="wrapper1" style="overflow-x: scroll; overflow-y:hidden; height: 20px; position: fixed; bottom: 0; z-index:100;">
+        <div class="div1" style="width:100%; height: 20px;"></div>
+    </div>
+        <div class="table-responsive wrapper2" style="overflow: hidden; margin-right: 30px; margin-top: 40px">
+            <table class="table table-bordered table-hover">
+                <caption>Lista de livros</caption>
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            Título
+                        </th>
+                        <th>
+                            Autor
+                        </th>
+                        <th>
+                            Editora
+                        </th>
+                        <th>
+                            Gênero
+                        </th>
+                        <th>
+                            Idioma
+                        </th>
+                        <th>
+                            Data de Publicação
+                        </th>
+                        <th>
+                            Quantidade
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr class='clickable-row' data-id="@Html.DisplayFor(modelItem => item.ID)">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NOME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AUTOR)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Editora.NOME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Genero.NOME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Idioma.NOME)
+                        </td>
+                        <td>
+                            @Html.ValueFor(modelItem => item.DATA_PUBLICACAO, "{0:dd/MM/yyyy}")
+                        </td>
+                        <td class="with-buttons">
+                            @Html.DisplayFor(modelItem => item.QUANTIDADE)
+
+                            <div class="button-container">
+                                <button class="fas fa fa-info-circle btn-hiden details" data-id="@Html.DisplayFor(modelItem => item.ID)" title="Detalhes"></button>
+                                <button class="fas fa fa-pencil-alt btn-hiden edit" data-id="@Html.DisplayFor(modelItem => item.ID)" title="Editar"></button>
+                                <button class="fas fa fa-trash btn-hiden delete" data-id="@Html.DisplayFor(modelItem => item.ID)" title="Apagar"></button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    <div class="modal" id="modal">
+
+    </div>

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Livraria.Livro>
+
+@{
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Inicio</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Editora.NOME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genero.NOME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Idioma.NOME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AUTOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EDICAO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATA_PUBLICACAO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATA_CADASTRO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QUANTIDADE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATA_ALTERACAO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Editora.NOME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genero.NOME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Idioma.NOME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AUTOR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EDICAO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATA_PUBLICACAO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATA_CADASTRO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QUANTIDADE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATA_ALTERACAO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

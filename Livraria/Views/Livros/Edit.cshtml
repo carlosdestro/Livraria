@@ -1,0 +1,139 @@
+﻿@model Livraria.Livro
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                $(".editora").click(function () {
+                    var id = $(this).attr("data-id");
+                    $('.loading').addClass('visible');
+                    $("#modal").load("Editoras/Create", function () {
+                        $("#modal").modal();
+                        $('.loading').removeClass('visible');
+                    })
+                });
+            });
+            $(function () {
+                $(".genero").click(function () {
+                    var id = $(this).attr("data-id");
+                    $('.loading').addClass('visible');
+                    $("#modal").load("Generos/Create", function () {
+                        $("#modal").modal();
+                        $('.loading').removeClass('visible');
+                    })
+                });
+            });
+            $(function () {
+                $(".idioma").click(function () {
+                    var id = $(this).attr("data-id");
+                    $('.loading').addClass('visible');
+                    $("#modal").load("Idiomas/Create", function () {
+                        $("#modal").modal();
+                        $('.loading').removeClass('visible');
+                    })
+                });
+            });
+        });
+    </script>
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Livro</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ID)
+
+                    <div class="form-group">
+                        <div class="h5 col-md-2">TÍTULO</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NOME, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NOME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AUTOR, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.AUTOR, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AUTOR, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="control-label col-md-2">IDIOMA</div>
+                        <div class="col-md-10">
+                            @Html.DropDownList("IDIOMA_ID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IDIOMA_ID, "", new { @class = "text-danger" })
+                            <button type="button" class="btn btn-outline-secondary idioma" data-dismiss="modal" style="margin-top:5px;">Novo Idioma</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="control-label col-md-2">EDITORA</div>
+                        <div class="col-md-10">
+                            @Html.DropDownList("EDITORA_ID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.EDITORA_ID, "", new { @class = "text-danger" })
+                            <button type="button" class="btn btn-outline-secondary editora" data-dismiss="modal" style="margin-top:5px;">Nova Editora</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="control-label col-md-2">EDIÇÃO</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.EDICAO, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EDICAO, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="control-label col-md-2">GÊNERO</div>
+                        <div class="col-md-10">
+                            @Html.DropDownList("GENERO_ID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.GENERO_ID, "", new { @class = "text-danger" })
+                            <button type="button" class="btn btn-outline-secondary genero" data-dismiss="modal" style="margin-top:5px;">Novo Gênero</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="control-label col-md-6">DATA DE PUBLICAÇÃO</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DATA_PUBLICACAO, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DATA_PUBLICACAO, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.QUANTIDADE, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.QUANTIDADE, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.QUANTIDADE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-12">
+                        <button type="submit" class="btn btn-outline-secondary">Salvar</button>
+                        <button type="button" class="btn btn-outline-secondary dismiss" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
