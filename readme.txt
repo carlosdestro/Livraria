@@ -14,3 +14,6 @@ Como rodar o sistema Livraria:
 - em project url defina a url local (no meu caso http://localhost.com/Livraria) e clique em Create Virtual Directory
 - salve as alterações
 - pressione f5 para rodar o projeto em modo debug
+
+
+com o projeto rodando a api responde em: http://localhost.com/Livraria/api/LivrariaApi
